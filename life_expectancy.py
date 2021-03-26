@@ -18,7 +18,8 @@ max_country = ''
 avg_sum = 0
 i = 0
 
-with open ('Week 11\life-expectancy.csv') as f:
+#Depending on where you have the .csv file saved the path may need to be changed to properly run the file.
+with open ('Python_Projects_With_Friends\life-expectancy.csv') as f:
     print()
     input_year = int(input('What year would you like to learn about? '))
     print()
@@ -29,17 +30,18 @@ with open ('Week 11\life-expectancy.csv') as f:
         
 
         if line_counter > 1: #Skips the title line of .csv file
-
+            
             #Variables
             entity = parts[0]
             year = int(parts[2])
             life_expectancies = float(parts[3])
 
-
+        
             if input_year == year:
                 avg_sum += life_expectancies
                 i = i + 1
 
+                #The following if statements calculate the specific year's max/min life expectancy data
                 if life_expectancies < minimum:
                     minimum = life_expectancies
                     min_country = entity
@@ -48,17 +50,14 @@ with open ('Week 11\life-expectancy.csv') as f:
                     maximum = life_expectancies
                     max_country = entity
 
-            
+               
 
             #This locates the lowest life expectancy and pairs it with the country and the year
             if life_expectancies < lowest:
                 lowest = life_expectancies
                 lowest_year = year
                 lowest_country = entity
-
-
-            
-        # if line_counter > 1: #Skips the title line of .csv file    
+ 
             
             #This locates the highest life expectancy and pairs it with the country and the year
             if life_expectancies > highest:
@@ -66,13 +65,10 @@ with open ('Week 11\life-expectancy.csv') as f:
                 highest_year = year
                 highest_country = entity
 
-                
-    
-                if life_expectancies < lowest:
-                    lowest = life_expectancies
-                    lowest_country = entity
-    
+               
 average = avg_sum / i
+# all_avg = avg_sum / line_counter
+
 print(f'For the year {input_year}:')
 print(f'The average life expectancy across all countries was {average:.3f}')
 print(f'The max life expectancy was in {max_country} at {maximum:.3f} years.')
@@ -82,9 +78,9 @@ print()
     
 
 print(f'The overall max life expectancy is: {highest} from {highest_country} in {highest_year}')
-print(f'The overall min life expectancy is: {lowest} from {lowest_country} in {lowest_year}') 
-# print(avg_sum)
-# print(line_counter)
+print(f'The overall min life expectancy is: {lowest} from {lowest_country} in {lowest_year}')
+# print(f'The overall average life expectancy is: {all_avg:.3f}')
+
 
                 
 
